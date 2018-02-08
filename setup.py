@@ -16,5 +16,6 @@ setup(
     author_email='cbornet@hotmail.com',
     description='Utility library to work with RFC7807 Problem Details for HTTP APIs',
     long_description=long_description,
-    packages=['httpproblem']
+    packages=['httpproblem'],
+    keywords='rfc7807 problem http json',
 )
