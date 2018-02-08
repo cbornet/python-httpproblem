@@ -1,6 +1,11 @@
 import json
 import traceback
-import httplib
+import sys
+
+if sys.version_info[0] > 2:
+    import http.client as httplib
+else:
+    import httplib
 
 SERIALIZE_METHOD = json.dumps
 WITH_TRACEBACK = False
@@ -19,6 +24,7 @@ def activate_traceback():
 def deactivate_traceback():
     global WITH_TRACEBACK
     WITH_TRACEBACK = False
+
 
 class Problem(Exception):
     def __init__(self, status=None, title=None, detail=None, type=None, instance=None, **kwargs):
