@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst')) as f:
 
 setup(
     name='httpproblem',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/cbornet/python-httpproblem',
     license='MIT',
     author='Christophe Bornet',
