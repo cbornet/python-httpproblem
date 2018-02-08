@@ -3,8 +3,7 @@ from setuptools import setup
 setup(
     name='httpproblem',
     version='0.1.0',
-    packages=[],
-    url='',
+    url='https://github.com/cbornet/python-httpproblem',
     license='MIT',
     author='Christophe Bornet',
     author_email='cbornet@hotmail.com',
