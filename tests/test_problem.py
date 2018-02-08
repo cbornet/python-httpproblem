@@ -84,7 +84,7 @@ def test_exception_to_dict():
     deactivate_traceback()
     try:
         raise Problem(1000, 'test_title', 'test_detail', 'test_type', 'test_instance', custom='test_custom')
-    except Problem, e:
+    except Problem as e:
         exception_as_dict = e.to_dict()
         assert exception_as_dict == {
             'status': 1000, 'title': 'test_title', 'detail': 'test_detail',
@@ -96,7 +96,7 @@ def test_exception_to_dict_with_global_traceback():
     activate_traceback()
     try:
         raise Problem()
-    except Problem, e:
+    except Problem as e:
         exception_as_dict = e.to_dict()
         assert "Traceback (most recent call last):" in exception_as_dict['traceback']
         del exception_as_dict['traceback']
@@ -107,7 +107,7 @@ def test_exception_to_dict_with_traceback_param():
     deactivate_traceback()
     try:
         raise Problem()
-    except Problem, e:
+    except Problem as e:
         exception_as_dict = e.to_dict(with_trace_back=True)
         assert "Traceback (most recent call last):" in exception_as_dict['traceback']
         del exception_as_dict['traceback']
@@ -118,7 +118,7 @@ def test_exception_to_http_response():
     deactivate_traceback()
     try:
         raise Problem(1000, 'test_title', 'test_detail', 'test_type', 'test_instance', custom='test_custom')
-    except Problem, e:
+    except Problem as e:
         response = e.to_http_response()
         assert response['statusCode'] == 1000
         assert response['headers'] == {'Content-Type': 'application/problem+json'}
@@ -132,7 +132,7 @@ def test_exception_to_http_response_with_global_traceback():
     activate_traceback()
     try:
         raise Problem()
-    except Problem, e:
+    except Problem as e:
         response = e.to_http_response()
         body = json.loads(response['body'])
         assert "Traceback (most recent call last):" in body['traceback']
@@ -144,7 +144,7 @@ def test_exception_to_http_response_with_traceback_param():
     deactivate_traceback()
     try:
         raise Problem()
-    except Problem, e:
+    except Problem as e:
         response = e.to_http_response(with_trace_back=True)
         body = json.loads(response['body'])
         assert "Traceback (most recent call last):" in body['traceback']
