@@ -1,10 +1,14 @@
+dist: trusty
 language: python
-python:
-  - "2.7"
-  - "3.6"
+
+addons:
+  sonarcloud:
+    organization: "cbornet-github"
 
 install:
-  - pip install tox-travis
+  - pyenv global system 3.6
+  - pip install tox
 
 script:
   - tox
+  - sonar-scanner
