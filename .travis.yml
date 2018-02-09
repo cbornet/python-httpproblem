@@ -1,12 +1,10 @@
 dist: trusty
 
-install:
-  - sonar-scanner
-  - pip install pip --upgrade
-  - python --version
-  - pip --version
-  - pip install tox
+addons:
+  sonarcloud:
+    organization: "sonarcloud_organization_key"
+    token:
+      secure: 1234
 
 script:
-  - which sonar-scanner
-  - tox
+  - sonar-scanner
