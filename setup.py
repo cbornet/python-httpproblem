@@ -1,15 +1,19 @@
-from os import path
+import subprocess
 from setuptools import setup
 
-here = path.abspath(path.dirname(__file__))
-
-# Get the long description from the README file
-with open(path.join(here, 'README.rst')) as f:
-    long_description = f.read()
+# Try to create an rst long_description from README.md
+try:
+    args = 'pandoc', '--to', 'rst', 'README.md'
+    long_description = subprocess.check_output(args).decode('utf-8')
+except Exception as error:
+    print('README.md conversion to reStructuredText failed. Error:')
+    print(error)
+    print('Setting long_description to None.')
+    long_description = None
 
 setup(
     name='httpproblem',
-    version='0.1.2',
+    version='0.1.5',
     url='https://github.com/cbornet/python-httpproblem',
     download_url='https://pypi.python.org/pypi/httpproblem',
     license='MIT',
