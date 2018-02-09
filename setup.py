@@ -21,4 +21,3 @@ setup(
     keywords='rfc7807 problem http json',
     platforms=['any']
 )
-•
