@@ -11,6 +11,6 @@ install:
 
 script:
   - tox
-  - sed 's/filename\=\"/filename\=\"httpproblem\//g' coverage.xml
+  - sed -i -e 's/filename\=\"/filename\=\"httpproblem\//g' coverage.xml
   - cat coverage.xml
   - sonar-scanner --debug
