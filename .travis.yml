@@ -6,5 +6,13 @@ addons:
     token:
       secure: 1234
 
+install:
+  - python --version
+  - pip --version
+  - pip install pip --upgrade
+  - pip --version
+  - pip install tox
+
 script:
+  - tox
   - sonar-scanner
