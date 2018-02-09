@@ -11,4 +11,4 @@ install:
 
 script:
   - tox
-  - sonar-scanner
+  - sonar-scanner --debug
