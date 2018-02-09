@@ -8,6 +8,7 @@ addons:
       secure: 1234
 
 install:
+  - pyenv global system 3.6
   - pyenv versions
   - python3 --version
   - pip install tox
