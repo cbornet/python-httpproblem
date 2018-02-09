@@ -1,6 +1,10 @@
 dist: trusty
 
 install:
+  - which sonar-runner
+  - pip install pip --upgrade
+  - python --version
+  - pip --version
   - pip install tox
 
 script:
