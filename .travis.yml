@@ -11,4 +11,5 @@ install:
 
 script:
   - tox
+  - cat coverage.xml
   - sonar-scanner --debug
