@@ -11,6 +11,6 @@ install:
 
 script:
   - tox
+  # Ugly hack because the sonar-scanner on Travis has a bug on resolving the coverage.xml file paths
   - sed -i -e 's/filename\=\"/filename\=\"httpproblem\//g' coverage.xml
-  - cat coverage.xml
-  - sonar-scanner --debug
+  - sonar-scanner
