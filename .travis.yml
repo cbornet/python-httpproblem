@@ -8,10 +8,7 @@ addons:
       secure: 1234
 
 install:
-  - python --version
-  - pip --version
-  - pip install pip --upgrade
-  - pip --version
+  - python3 --version
   - pip install tox
 
 script:
