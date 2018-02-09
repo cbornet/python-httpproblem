@@ -9,8 +9,9 @@ with open(path.join(here, 'README.rst')) as f:
 
 setup(
     name='httpproblem',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/cbornet/python-httpproblem',
+    download_url='https://pypi.python.org/pypi/httpproblem',
     license='MIT',
     author='Christophe Bornet',
     author_email='cbornet@hotmail.com',
@@ -18,4 +19,5 @@ setup(
     long_description=long_description,
     packages=['httpproblem'],
     keywords='rfc7807 problem http json',
+    platforms=['any']
 )
