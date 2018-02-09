@@ -1,6 +1,4 @@
-language: python
-dist:
-  - trusty
+dist: trusty
 
 install:
   - pip install tox
