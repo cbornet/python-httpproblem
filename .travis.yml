@@ -1,7 +1,7 @@
 dist: trusty
 
 install:
-  - sonar-runner
+  - sonar-scanner
   - pip install pip --upgrade
   - python --version
   - pip --version
