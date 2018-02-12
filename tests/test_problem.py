@@ -165,3 +165,11 @@ def test_set_serialize_function():
         'body': 'dummy',
         'headers': {'Content-Type': 'application/problem+json'},
     }
+
+
+def test_str():
+    assert str(Problem(400)) == "{'status': 400, 'title': 'Bad Request'}"
+
+
+def test_repr():
+    assert repr(Problem(400)) == "{'status': 400, 'title': 'Bad Request'}"

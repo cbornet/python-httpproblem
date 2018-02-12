@@ -97,6 +97,9 @@ class Problem(Exception):
     def __str__(self):
         return str(self.to_dict(with_traceback=False))
 
+    def __repr__(self):
+        return str(self)
+
 
 def problem(status=None, title=None, detail=None, type=None, instance=None, **kwargs):
     """
