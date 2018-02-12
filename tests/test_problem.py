@@ -2,7 +2,7 @@ import json
 
 from pytest import mark
 from httpproblem import problem, problem_http_response, Problem, activate_traceback, deactivate_traceback,\
-    set_serialize_method
+    set_serialize_function
 
 
 @mark.parametrize("status, title, detail, type, instance, kwargs, expected",
@@ -23,6 +23,12 @@ from httpproblem import problem, problem_http_response, Problem, activate_traceb
                               404, None, None, None, None, {},
                               {
                                   'status': 404, 'title': 'Not Found'
+                              }
+                      ),
+                      (
+                              404, None, None, 'about:blank', None, {},
+                              {
+                                  'status': 404, 'title': 'Not Found', 'type': 'about:blank'
                               }
                       ),
                       (
@@ -108,7 +114,7 @@ def test_exception_to_dict_with_traceback_param():
     try:
         raise Problem()
     except Problem as e:
-        exception_as_dict = e.to_dict(with_trace_back=True)
+        exception_as_dict = e.to_dict(with_traceback=True)
         assert "Traceback (most recent call last):" in exception_as_dict['traceback']
         del exception_as_dict['traceback']
         assert exception_as_dict == {}
@@ -145,17 +151,15 @@ def test_exception_to_http_response_with_traceback_param():
     try:
         raise Problem()
     except Problem as e:
-        response = e.to_http_response(with_trace_back=True)
+        response = e.to_http_response(with_traceback=True)
         body = json.loads(response['body'])
         assert "Traceback (most recent call last):" in body['traceback']
         del body['traceback']
         assert body == {}
 
 
-def test_set_serialize_method():
-    def dummy_serialize(input):
-        return "dummy"
-    set_serialize_method(dummy_serialize)
+def test_set_serialize_function():
+    set_serialize_function(lambda data: 'dummy')
     assert problem_http_response() == {
         'statusCode': None,
         'body': 'dummy',

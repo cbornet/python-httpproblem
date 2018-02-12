@@ -11,7 +11,7 @@ SERIALIZE_METHOD = json.dumps
 WITH_TRACEBACK = False
 
 
-def set_serialize_method(method):
+def set_serialize_function(method):
     """
     Set the method to use to serialize a dict into a json string
     :param method: the method to use
@@ -58,36 +58,36 @@ class Problem(Exception):
         self.instance = instance
         self.kwargs = kwargs
 
-    def to_dict(self, with_trace_back=None):
+    def to_dict(self, with_traceback=None):
         """
         Transforms the Problem exception into a dict
 
-        :param with_trace_back: if True, the last exception traceback will be included
-        :type with_trace_back: bool
+        :param with_traceback: if True, the last exception traceback will be included
+        :type with_traceback: bool
         :return the problem in dict form
         :rtype dict
         """
-        if with_trace_back is None:
-            with_trace_back = WITH_TRACEBACK
-        if with_trace_back:
+        if with_traceback is None:
+            with_traceback = WITH_TRACEBACK
+        if with_traceback:
             return problem(self.status, self.title, self.detail, self.type, self.instance,
                            traceback=traceback.format_exc(), **self.kwargs)
         else:
             return problem(self.status, self.title, self.detail, self.type, self.instance,
                            **self.kwargs)
 
-    def to_http_response(self, with_trace_back=None):
+    def to_http_response(self, with_traceback=None):
         """
         Transforms the Problem exception into an http response with a json body
 
-        :param with_trace_back: if True, the last exception traceback will be included
-        :type with_trace_back: bool
+        :param with_traceback: if True, the last exception traceback will be included
+        :type with_traceback: bool
         :return the problem in an AWS lambda compatible http representation with json body
         :rtype dict
         """
-        if with_trace_back is None:
-            with_trace_back = WITH_TRACEBACK
-        if with_trace_back:
+        if with_traceback is None:
+            with_traceback = WITH_TRACEBACK
+        if with_traceback:
             return problem_http_response(self.status, self.title, self.detail, self.type, self.instance,
                                          traceback=traceback.format_exc(), **self.kwargs)
         else:
@@ -95,7 +95,7 @@ class Problem(Exception):
                                          **self.kwargs)
 
     def __str__(self):
-        return str(self.to_dict(with_trace_back=False))
+        return str(self.to_dict(with_traceback=False))
 
 
 def problem(status=None, title=None, detail=None, type=None, instance=None, **kwargs):
@@ -122,7 +122,7 @@ def problem(status=None, title=None, detail=None, type=None, instance=None, **kw
     problem_dict = {}
     if status:
         problem_dict['status'] = int(status)
-        if not title and status in httplib.responses:
+        if (not title or title == 'about:blank') and status in httplib.responses:
             problem_dict['title'] = httplib.responses[status]
     if title:
         problem_dict['title'] = str(title)
