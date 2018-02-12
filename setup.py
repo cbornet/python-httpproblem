@@ -13,7 +13,7 @@ except Exception as error:
 
 setup(
     name='httpproblem',
-    version='0.1.5',
+    version='0.2.0',
     url='https://github.com/cbornet/python-httpproblem',
     download_url='https://pypi.python.org/pypi/httpproblem',
     license='MIT',
