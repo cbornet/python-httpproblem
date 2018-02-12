@@ -12,6 +12,7 @@ Utility library to work with [RFC7807 Problem Details for HTTP APIs](https://too
 This library is very light-weight, with no external dependencies, fully-tested and works with both Python 2 and Python 3.
 It has special support for [AWS lambda proxy integration output format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format)
 but it should be easy to map to any other format or framework.
+Currently only JSON serialization is supported.
 
 # Installation
 ```
