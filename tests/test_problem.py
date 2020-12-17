@@ -168,8 +168,12 @@ def test_set_serialize_function():
 
 
 def test_str():
-    assert str(Problem(400)) == "{'status': 400, 'title': 'Bad Request'}"
+    actual = str(Problem(400))
+    assert actual == "{'status': 400, 'title': 'Bad Request'}" or \
+        actual == "{'title': 'Bad Request', 'status': 400}"
 
 
 def test_repr():
-    assert repr(Problem(400)) == "{'status': 400, 'title': 'Bad Request'}"
+    actual = repr(Problem(400))
+    assert actual == "{'status': 400, 'title': 'Bad Request'}" or \
+        actual == "{'title': 'Bad Request', 'status': 400}"
